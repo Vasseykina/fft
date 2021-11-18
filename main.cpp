@@ -8,6 +8,8 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
+#include "fft.h"
+
 using namespace std;
 
 typedef complex<double> cd;
@@ -64,28 +66,16 @@ vcd fft_rev(const vcd &as) {
 
 int main() {
     int n;
-    cin>> n;
+    cin >> n;
 
-    vcd as(n);
+    vcd num1(n);
     for (int i = 0; i < n; i++) {
         int x;
-        cin>>x;
-        as[i] = x;
+        cin >> x;
+        num1[i] = x;
     }
-
-    //clock_t stime = clock();
-    vcd res = fft(as);
-
-    vcd c_vals(res.size());
-
-    for (int i = 0; i < res.size(); i++)
-        c_vals[i] = res[i] * res[i];
-
-
-    cout<<"Result:"<<endl;
-//    stime = clock();
-    vcd as2 = fft_rev(c_vals);
+    auto res = FFT::multiplication(num1, num1);
     for (int i = 0; i < n; i++)
-        cout<<setprecision(5)<< as2[i].real()<< endl;
+        cout << setprecision(5) << res[i].real() << endl;
     return 0;
 }
