@@ -6,8 +6,8 @@
 #include <vector>
 #include <complex>
 #include <cmath>
-
-
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 typedef complex<double> cd;
@@ -64,11 +64,12 @@ vcd fft_rev(const vcd &as) {
 
 int main() {
     int n;
-    scanf("%d", &n);
+    cin>> n;
+
     vcd as(n);
     for (int i = 0; i < n; i++) {
         int x;
-        scanf("%d", &x);
+        cin>>x;
         as[i] = x;
     }
 
@@ -81,10 +82,10 @@ int main() {
         c_vals[i] = res[i] * res[i];
 
 
-    printf("Result:\n");
+    cout<<"Result:"<<endl;
 //    stime = clock();
     vcd as2 = fft_rev(c_vals);
     for (int i = 0; i < n; i++)
-        printf("%.4lf \n", as2[i].real());
+        cout<<setprecision(5)<< as2[i].real()<< endl;
     return 0;
 }
