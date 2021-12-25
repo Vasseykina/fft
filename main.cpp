@@ -15,6 +15,7 @@ int main() {
     cout<<"Enter number 2"<<endl;
     cin >> n;
     vcd num2 = FFT::as_array(n);
+    cout<<"Result:"<<endl;
     auto res = FFT::multiplication(num1, num2);
     FFT::as_number(res);
     return 0;
